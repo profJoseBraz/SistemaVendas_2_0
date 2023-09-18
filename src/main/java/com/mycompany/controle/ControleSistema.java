@@ -19,6 +19,8 @@ import java.util.Scanner;
  */
 public class ControleSistema {
     public static ArrayList<Object> produtos = new ArrayList<>();
+    public static ArrayList<Object> produtosVendidos = new ArrayList<>();
+    public static int qtdeVenda;
     
     public static void cadastar(){
         int opcaoProduto = VisaoMenu.menuEscolhaProduto();
@@ -92,6 +94,32 @@ public class ControleSistema {
             }catch(Exception e){
                 System.out.println("Produto inexistente!");
             }
+        }
+    }
+    
+    public static void vender(int indiceProduto){
+        indiceProduto = indiceProduto - 1;
+        
+        Object object = produtos.get(indiceProduto);
+        
+        if(object instanceof VideoGame){
+            VideoGame videoGame = new VideoGame();
+            videoGame = (VideoGame) object;
+            
+            videoGame = (VideoGame) VisaoMenu.menuVendaProdutoInformacoes(videoGame);
+            
+            System.out.println("=============DETALHES DA VENDA=============");
+            System.out.println(videoGame.toString());
+            System.out.println("TOTAL: " + qtdeVenda * videoGame.getPreco());
+        }else if(object instanceof Computador){
+            Computador computador = new Computador();
+            computador = (Computador) object;
+            
+            computador = (Computador) VisaoMenu.menuVendaProdutoInformacoes(computador);
+            
+            System.out.println("=============DETALHES DA VENDA=============");
+            System.out.println(computador.toString());
+            System.out.println("TOTAL: " + qtdeVenda * computador.getPreco());
         }
     }
 }
