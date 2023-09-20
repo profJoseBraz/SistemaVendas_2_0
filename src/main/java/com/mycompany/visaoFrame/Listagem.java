@@ -36,49 +36,60 @@ public class Listagem extends javax.swing.JFrame {
             Object[] linha = new Object[defaultTableModel.getColumnCount()];
             defaultTableModel.addRow(linha);
             
-            tableListagem.setValueAt(((Computador) ControleSistema.produtos.get(i)).getNome(), i, 0);
+            if(ControleSistema.produtos.get(i) instanceof Computador)
+                tableListagem.setValueAt(((Computador) ControleSistema.produtos.get(i)).getNome(), i, 0);
+            else if(ControleSistema.produtos.get(i) instanceof VideoGame)
+                tableListagem.setValueAt(((VideoGame) ControleSistema.produtos.get(i)).getNome(), i, 0);
         }
     }
     
     public void listarComputador(){
-        DefaultTableModel defaultTableModel = new DefaultTableModel();
-        
-        defaultTableModel.addColumn("Nome");
-        defaultTableModel.addColumn("Preço");
-        defaultTableModel.addColumn("Memória Ram");
-        defaultTableModel.addColumn("Processador");
-        
-        tableListagem.setModel(defaultTableModel);
-        
-        defaultTableModel.setRowCount(0);
-        for(int i = 0; i < ControleSistema.produtos.size(); i++){
-            Object[] linha = new Object[defaultTableModel.getColumnCount()];
-            defaultTableModel.addRow(linha);
+        if(!ControleSistema.produtos.isEmpty()){
+            DefaultTableModel defaultTableModel = new DefaultTableModel();
             
-            tableListagem.setValueAt(((Computador) ControleSistema.produtos.get(i)).getNome(), i, 0);
-            tableListagem.setValueAt(((Computador) ControleSistema.produtos.get(i)).getPreco(), i, 1);
-            tableListagem.setValueAt(((Computador) ControleSistema.produtos.get(i)).getMemoriaRam(), i, 2);
-            tableListagem.setValueAt(((Computador) ControleSistema.produtos.get(i)).getProcessador(), i, 3);
+            defaultTableModel.addColumn("Nome");
+            defaultTableModel.addColumn("Preço");
+            defaultTableModel.addColumn("Memória Ram");
+            defaultTableModel.addColumn("Processador");
+
+            tableListagem.setModel(defaultTableModel);
+
+            defaultTableModel.setRowCount(0);
+            for(int i = 0; i < ControleSistema.produtos.size(); i++){
+                if(ControleSistema.produtos.get(i) instanceof Computador){
+                    Object[] linha = new Object[defaultTableModel.getColumnCount()];
+                    defaultTableModel.addRow(linha);
+
+                    tableListagem.setValueAt(((Computador) ControleSistema.produtos.get(i)).getNome(), i, 0);
+                    tableListagem.setValueAt(((Computador) ControleSistema.produtos.get(i)).getPreco(), i, 1);
+                    tableListagem.setValueAt(((Computador) ControleSistema.produtos.get(i)).getMemoriaRam(), i, 2);
+                    tableListagem.setValueAt(((Computador) ControleSistema.produtos.get(i)).getProcessador(), i, 3);
+                }
+            }
         }
     }
    
     public void listarVideoGame(){
-        DefaultTableModel defaultTableModel = new DefaultTableModel();
-        
-        defaultTableModel.addColumn("Nome");
-        defaultTableModel.addColumn("Preço");
-        defaultTableModel.addColumn("Plataforma");
-        
-        tableListagem.setModel(defaultTableModel);
-        
-        defaultTableModel.setRowCount(0);
-        for(int i = 0; i < ControleSistema.produtos.size(); i++){
-            Object[] linha = new Object[defaultTableModel.getColumnCount()];
-            defaultTableModel.addRow(linha);
-            
-            tableListagem.setValueAt(((VideoGame) ControleSistema.produtos.get(i)).getNome(), i, 0);
-            tableListagem.setValueAt(((VideoGame) ControleSistema.produtos.get(i)).getPreco(), i, 1);
-            tableListagem.setValueAt(((VideoGame) ControleSistema.produtos.get(i)).getPlataforma(), i, 2);
+        if(!ControleSistema.produtos.isEmpty()){
+            DefaultTableModel defaultTableModel = new DefaultTableModel();
+
+            defaultTableModel.addColumn("Nome");
+            defaultTableModel.addColumn("Preço");
+            defaultTableModel.addColumn("Plataforma");
+
+            tableListagem.setModel(defaultTableModel);
+
+            defaultTableModel.setRowCount(0);
+            for(int i = 0; i < ControleSistema.produtos.size(); i++){
+                if(ControleSistema.produtos.get(i) instanceof VideoGame){
+                    Object[] linha = new Object[defaultTableModel.getColumnCount()];
+                    defaultTableModel.addRow(linha);
+
+                    tableListagem.setValueAt(((VideoGame) ControleSistema.produtos.get(i)).getNome(), i, 0);
+                    tableListagem.setValueAt(((VideoGame) ControleSistema.produtos.get(i)).getPreco(), i, 1);
+                    tableListagem.setValueAt(((VideoGame) ControleSistema.produtos.get(i)).getPlataforma(), i, 2);
+                }
+            }
         }
     }
     

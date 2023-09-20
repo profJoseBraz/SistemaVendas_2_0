@@ -33,6 +33,7 @@ public class MenuCategoria extends javax.swing.JFrame {
         btnOk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Seleção de categoria");
 
         jLabel1.setText("Selecione uma categoria:");
 
@@ -74,13 +75,21 @@ public class MenuCategoria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+
         switch(cbCategorias.getSelectedIndex()){
             case 0:
                 CadastroComputador cadastroComputador = new CadastroComputador();
                 cadastroComputador.setLocationRelativeTo(null);
                 cadastroComputador.setVisible(true);
                 break;
+            case 1:
+                CadastroVideoGame cadastroVideoGame = new CadastroVideoGame();
+                cadastroVideoGame.setLocationRelativeTo(null);
+                cadastroVideoGame.setVisible(true);
+                break;
         }
+        
+        
     }//GEN-LAST:event_btnOkActionPerformed
 
     /**

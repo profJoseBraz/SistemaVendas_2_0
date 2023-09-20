@@ -36,6 +36,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu principal");
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setPreferredSize(new java.awt.Dimension(80, 30));
@@ -52,7 +53,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnRemover.setPreferredSize(new java.awt.Dimension(80, 30));
 
         btnListar.setText("Listar");
-        btnListar.setActionCommand("Listar");
         btnListar.setPreferredSize(new java.awt.Dimension(80, 30));
         btnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,7 +61,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         btnVender.setText("Vender");
-        btnVender.setActionCommand("Vender");
         btnVender.setPreferredSize(new java.awt.Dimension(80, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -73,7 +72,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

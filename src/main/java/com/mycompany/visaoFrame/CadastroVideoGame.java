@@ -5,19 +5,19 @@
 package com.mycompany.visaoFrame;
 
 import com.mycompany.controle.ControleSistema;
-import com.mycompany.modelo.Computador;
+import com.mycompany.modelo.VideoGame;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author jose_
+ * @author 10156
  */
-public class CadastroComputador extends javax.swing.JFrame {
+public class CadastroVideoGame extends javax.swing.JFrame {
 
     /**
-     * Creates new form CadastroComputador
+     * Creates new form CadastroVideoGame
      */
-    public CadastroComputador() {
+    public CadastroVideoGame() {
         initComponents();
     }
 
@@ -35,32 +35,27 @@ public class CadastroComputador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         tfPreco = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        tfMemoriaRam = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        tfProcessador = new javax.swing.JTextField();
-        btnSalvar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        tfPlataforma = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de computador");
-        setPreferredSize(new java.awt.Dimension(500, 400));
+        setTitle("Cadastro de video game");
 
         jLabel1.setText("Nome");
 
         jLabel2.setText("Preço");
 
-        jLabel3.setText("Memória Ram");
+        jLabel3.setText("Plataforma");
 
-        jLabel4.setText("Processador");
-
-        btnSalvar.setText("Salvar");
-        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Salvar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        btnCancelar.setText("Cancelar");
+        jButton2.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,20 +65,18 @@ public class CadastroComputador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfNome)
-                    .addComponent(tfProcessador, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+                    .addComponent(tfPlataforma)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
                             .addComponent(tfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfMemoriaRam, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel3))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSalvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCancelar)))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -100,52 +93,32 @@ public class CadastroComputador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfMemoriaRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfProcessador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addComponent(tfPlataforma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvar)
-                    .addComponent(btnCancelar))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-//        try{
-//            Computador computador = new Computador();
-//
-//            computador.setNome(tfNome.getText());
-//            computador.setPreco(Double.parseDouble(tfPreco.getText()));
-//            computador.setMemoriaRam(Double.parseDouble(tfMemoriaRam.getText()));
-//            computador.setProcessador(tfProcessador.getText());
-//
-//            ControleSistema.produtos.add(computador);
-//            
-//            JOptionPane.showMessageDialog(null, "Produto " + computador.getNome() + " salvo com sucesso!");
-//        }catch(Exception e){
-//            JOptionPane.showMessageDialog(null, "Erro ao salvar!");
-//        }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
-            Computador computador = new Computador();
+            VideoGame videoGame = new VideoGame();
 
-            computador.setNome(tfNome.getText());
-            computador.setPreco(Double.parseDouble(tfPreco.getText()));
-            computador.setMemoriaRam(Double.parseDouble(tfMemoriaRam.getText()));
-            computador.setProcessador(tfProcessador.getText());
+            videoGame.setNome(tfNome.getText());
+            videoGame.setPreco(Double.parseDouble(tfPreco.getText()));
+            videoGame.setPlataforma(tfPlataforma.getText());
 
-            ControleSistema.produtos.add(computador);
+            ControleSistema.produtos.add(videoGame);
 
-            JOptionPane.showMessageDialog(null, "Computador " + computador.getNome() + " salvo com sucesso!");
+            JOptionPane.showMessageDialog(null, "Video game " + videoGame.getNome() + " salvo com sucesso!");
         
             tfNome.setText("");
             tfPreco.setText("");
-            tfMemoriaRam.setText("");
-            tfProcessador.setText("");
+            tfPlataforma.setText("");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Erro ao salvar! Motivo: " + e.getMessage());
         }
@@ -153,7 +126,7 @@ public class CadastroComputador extends javax.swing.JFrame {
         for(int i = 0; i < ControleSistema.produtos.size(); i++){
             System.out.println(ControleSistema.produtos.get(i));
         }
-    }//GEN-LAST:event_btnSalvarActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,34 +145,32 @@ public class CadastroComputador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroComputador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroVideoGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroComputador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroVideoGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroComputador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroVideoGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroComputador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroVideoGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroComputador().setVisible(true);
+                new CadastroVideoGame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField tfMemoriaRam;
     private javax.swing.JTextField tfNome;
+    private javax.swing.JTextField tfPlataforma;
     private javax.swing.JTextField tfPreco;
-    private javax.swing.JTextField tfProcessador;
     // End of variables declaration//GEN-END:variables
 }
