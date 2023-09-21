@@ -7,6 +7,7 @@ package com.mycompany.visaoFrame;
 import com.mycompany.controle.ControleSistema;
 import com.mycompany.modelo.Computador;
 import com.mycompany.modelo.VideoGame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,7 +21,8 @@ public class Listagem extends javax.swing.JFrame {
      */
     public Listagem() {
         initComponents();
-       
+        
+        listarTodos();
     }
 
     public void listarTodos(){
@@ -36,10 +38,13 @@ public class Listagem extends javax.swing.JFrame {
             Object[] linha = new Object[defaultTableModel.getColumnCount()];
             defaultTableModel.addRow(linha);
             
-            if(ControleSistema.produtos.get(i) instanceof Computador)
+            if(ControleSistema.produtos.get(i) instanceof Computador){
                 tableListagem.setValueAt(((Computador) ControleSistema.produtos.get(i)).getNome(), i, 0);
-            else if(ControleSistema.produtos.get(i) instanceof VideoGame)
+                tableListagem.setValueAt("Computador", i, 1);
+            }else if(ControleSistema.produtos.get(i) instanceof VideoGame){
                 tableListagem.setValueAt(((VideoGame) ControleSistema.produtos.get(i)).getNome(), i, 0);
+                tableListagem.setValueAt("Video game", i, 1);
+            }
         }
     }
     
@@ -122,12 +127,22 @@ public class Listagem extends javax.swing.JFrame {
                 "Nome", "Preço"
             }
         ));
+        tableListagem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableListagemMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableListagem);
 
         cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Computador", "Video game" }));
         cbCategoria.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbCategoriaItemStateChanged(evt);
+            }
+        });
+        cbCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCategoriaActionPerformed(evt);
             }
         });
 
@@ -170,6 +185,26 @@ public class Listagem extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_cbCategoriaItemStateChanged
+
+    private void cbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCategoriaActionPerformed
+
+    private void tableListagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableListagemMouseClicked
+        Object object;
+        
+        object = ControleSistema.produtos.get(tableListagem.getSelectedRow());
+        
+        if(object instanceof Computador){
+            Computador computador = new Computador();
+            computador = (Computador) object;
+            JOptionPane.showMessageDialog(null, computador.toString());
+        }else if(object instanceof VideoGame){
+            VideoGame videoGame = new VideoGame();
+            videoGame = (VideoGame) object;
+            JOptionPane.showMessageDialog(null, videoGame.toString());
+        }
+    }//GEN-LAST:event_tableListagemMouseClicked
 
     /**
      * @param args the command line arguments

@@ -197,9 +197,9 @@ public class CadastroComputador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField tfMemoriaRam;
-    private javax.swing.JTextField tfNome;
-    private javax.swing.JTextField tfPreco;
-    private javax.swing.JTextField tfProcessador;
+    public javax.swing.JTextField tfMemoriaRam;
+    public javax.swing.JTextField tfNome;
+    public javax.swing.JTextField tfPreco;
+    public javax.swing.JTextField tfProcessador;
     // End of variables declaration//GEN-END:variables
 }
