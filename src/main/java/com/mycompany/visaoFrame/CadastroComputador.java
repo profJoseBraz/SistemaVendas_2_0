@@ -46,6 +46,7 @@ public class CadastroComputador extends javax.swing.JFrame {
         tfProcessador = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de computador");
@@ -68,6 +69,13 @@ public class CadastroComputador extends javax.swing.JFrame {
 
         btnCancelar.setText("Cancelar");
 
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,6 +96,8 @@ public class CadastroComputador extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSalvar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar)))
                 .addContainerGap())
@@ -114,7 +124,8 @@ public class CadastroComputador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
-                    .addComponent(btnCancelar))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnExcluir))
                 .addContainerGap())
         );
 
@@ -130,9 +141,12 @@ public class CadastroComputador extends javax.swing.JFrame {
                 tfProcessador.setText(((Computador) object).getProcessador());
                 setTitle("Alteração de computador");
                 btnSalvar.setText(Constantes.BTN_NOME_ALTERAR);
+                btnExcluir.setVisible(true);
             }
         }else{
+            btnSalvar.setText(Constantes.BTN_NOME_SALVAR);
             setTitle("Cadastro de computador");
+            btnExcluir.setVisible(false);
         }
     }
     
@@ -151,6 +165,8 @@ public class CadastroComputador extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Produto alterado com sucesso!");
         
             Listagem.listarComputador();
+            
+            ArmazenadorDadosTemporarios.tempObject = null;
         }else{
             if(!Utilizades.produtoJaExiste(tfNome.getText(), ControleSistema.produtos) && btnSalvar.getText().equals(Constantes.BTN_NOME_SALVAR)){
                 try{
@@ -181,6 +197,18 @@ public class CadastroComputador extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        try{
+            ControleSistema.produtos.remove(ArmazenadorDadosTemporarios.tempObject);
+            JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
+            Listagem.listarTodos();
+            Listagem.listarComputador();
+            ArmazenadorDadosTemporarios.tempObject = null;
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao excluir!");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,6 +247,7 @@ public class CadastroComputador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
