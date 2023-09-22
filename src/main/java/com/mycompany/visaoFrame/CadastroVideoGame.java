@@ -120,7 +120,7 @@ public class CadastroVideoGame extends javax.swing.JFrame {
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(Utilizades.produtoJaExiste(tfNome.getText(), ControleSistema.produtos)){
+        if(!Utilizades.produtoJaExiste(tfNome.getText(), ControleSistema.produtos)){
             try{
                 VideoGame videoGame = new VideoGame();
 
