@@ -7,6 +7,8 @@ package com.mycompany.visaoFrame;
 import com.mycompany.controle.ControleSistema;
 import com.mycompany.modelo.Computador;
 import com.mycompany.modelo.VideoGame;
+import com.mycompany.outros.ArmazenadorDadosTemporarios;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -71,7 +73,7 @@ public class Listagem extends javax.swing.JFrame {
                     tableListagem.setValueAt(((Computador) ControleSistema.produtos.get(i)).getMemoriaRam(), linhaCont, 2);
                     tableListagem.setValueAt(((Computador) ControleSistema.produtos.get(i)).getProcessador(), linhaCont, 3);
                     
-                     linhaCont++;
+                    linhaCont++;
                 }
             }
         }
@@ -127,6 +129,9 @@ public class Listagem extends javax.swing.JFrame {
                 "Nome", "Preço"
             }
         ));
+        tableListagem.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tableListagem.setDoubleBuffered(true);
+        tableListagem.setShowGrid(false);
         tableListagem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableListagemMouseClicked(evt);
@@ -191,18 +196,25 @@ public class Listagem extends javax.swing.JFrame {
     }//GEN-LAST:event_cbCategoriaActionPerformed
 
     private void tableListagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableListagemMouseClicked
-        Object object;
         
-        object = ControleSistema.produtos.get(tableListagem.getSelectedRow());
+        String nome = tableListagem.getValueAt(tableListagem.getSelectedRow(), 0).toString();
         
-        if(object instanceof Computador){
-            Computador computador = new Computador();
-            computador = (Computador) object;
-            JOptionPane.showMessageDialog(null, computador.toString());
-        }else if(object instanceof VideoGame){
-            VideoGame videoGame = new VideoGame();
-            videoGame = (VideoGame) object;
-            JOptionPane.showMessageDialog(null, videoGame.toString());
+        for(Object object : ControleSistema.produtos){
+            if(object instanceof Computador){
+                if(((Computador) object).getNome().equals(nome)){
+                    ArmazenadorDadosTemporarios.tempObject = object;
+                    CadastroComputador cadastroComputador = new CadastroComputador();
+                    cadastroComputador.setVisible(true);
+                    break;
+                }
+            }else if(object instanceof VideoGame){
+                if(((VideoGame) object).getNome().equals(nome)){
+                    ArmazenadorDadosTemporarios.tempObject = object;
+                    CadastroVideoGame cadastroVideoGame = new CadastroVideoGame();
+                    cadastroVideoGame.setVisible(true);
+                    break;
+                }
+            }
         }
     }//GEN-LAST:event_tableListagemMouseClicked
 

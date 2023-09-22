@@ -5,7 +5,10 @@
 package com.mycompany.visaoFrame;
 
 import com.mycompany.controle.ControleSistema;
+import com.mycompany.modelo.Computador;
 import com.mycompany.modelo.VideoGame;
+import com.mycompany.outros.ArmazenadorDadosTemporarios;
+import com.mycompany.outros.Utilizades;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +22,8 @@ public class CadastroVideoGame extends javax.swing.JFrame {
      */
     public CadastroVideoGame() {
         initComponents();
+        
+        verificarDadosTemporarios(ArmazenadorDadosTemporarios.tempObject);
     }
 
     /**
@@ -104,27 +109,41 @@ public class CadastroVideoGame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
-            VideoGame videoGame = new VideoGame();
-
-            videoGame.setNome(tfNome.getText());
-            videoGame.setPreco(Double.parseDouble(tfPreco.getText()));
-            videoGame.setPlataforma(tfPlataforma.getText());
-
-            ControleSistema.produtos.add(videoGame);
-
-            JOptionPane.showMessageDialog(null, "Video game " + videoGame.getNome() + " salvo com sucesso!");
-        
-            tfNome.setText("");
-            tfPreco.setText("");
-            tfPlataforma.setText("");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Erro ao salvar! Motivo: " + e.getMessage());
+    private void verificarDadosTemporarios(Object object){
+        if(object != null){
+            if(object instanceof VideoGame){
+                tfNome.setText(((VideoGame) object).getNome());
+                tfPreco.setText(((VideoGame) object).getPreco().toString());
+                tfPlataforma.setText(((VideoGame) object).getPlataforma());
+            }
         }
-        
-        for(int i = 0; i < ControleSistema.produtos.size(); i++){
-            System.out.println(ControleSistema.produtos.get(i));
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(Utilizades.produtoJaExiste(tfNome.getText(), ControleSistema.produtos)){
+            try{
+                VideoGame videoGame = new VideoGame();
+
+                videoGame.setNome(tfNome.getText());
+                videoGame.setPreco(Double.parseDouble(tfPreco.getText()));
+                videoGame.setPlataforma(tfPlataforma.getText());
+
+                ControleSistema.produtos.add(videoGame);
+
+                JOptionPane.showMessageDialog(null, "Video game " + videoGame.getNome() + " salvo com sucesso!");
+
+                tfNome.setText("");
+                tfPreco.setText("");
+                tfPlataforma.setText("");
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Erro ao salvar! Motivo: " + e.getMessage());
+            }
+
+            for(int i = 0; i < ControleSistema.produtos.size(); i++){
+                System.out.println(ControleSistema.produtos.get(i));
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "O produto " + tfNome.getText() + " já está cadastrado!");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

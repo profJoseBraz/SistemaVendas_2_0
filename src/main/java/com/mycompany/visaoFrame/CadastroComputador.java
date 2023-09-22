@@ -6,6 +6,8 @@ package com.mycompany.visaoFrame;
 
 import com.mycompany.controle.ControleSistema;
 import com.mycompany.modelo.Computador;
+import com.mycompany.outros.ArmazenadorDadosTemporarios;
+import com.mycompany.outros.Utilizades;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +21,8 @@ public class CadastroComputador extends javax.swing.JFrame {
      */
     public CadastroComputador() {
         initComponents();
+        
+        verificarDadosTemporarios(ArmazenadorDadosTemporarios.tempObject);
     }
 
     /**
@@ -115,43 +119,44 @@ public class CadastroComputador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-//        try{
-//            Computador computador = new Computador();
-//
-//            computador.setNome(tfNome.getText());
-//            computador.setPreco(Double.parseDouble(tfPreco.getText()));
-//            computador.setMemoriaRam(Double.parseDouble(tfMemoriaRam.getText()));
-//            computador.setProcessador(tfProcessador.getText());
-//
-//            ControleSistema.produtos.add(computador);
-//            
-//            JOptionPane.showMessageDialog(null, "Produto " + computador.getNome() + " salvo com sucesso!");
-//        }catch(Exception e){
-//            JOptionPane.showMessageDialog(null, "Erro ao salvar!");
-//        }
-        try{
-            Computador computador = new Computador();
-
-            computador.setNome(tfNome.getText());
-            computador.setPreco(Double.parseDouble(tfPreco.getText()));
-            computador.setMemoriaRam(Double.parseDouble(tfMemoriaRam.getText()));
-            computador.setProcessador(tfProcessador.getText());
-
-            ControleSistema.produtos.add(computador);
-
-            JOptionPane.showMessageDialog(null, "Computador " + computador.getNome() + " salvo com sucesso!");
-        
-            tfNome.setText("");
-            tfPreco.setText("");
-            tfMemoriaRam.setText("");
-            tfProcessador.setText("");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Erro ao salvar! Motivo: " + e.getMessage());
+    private void verificarDadosTemporarios(Object object){
+        if(object != null){
+            if(object instanceof Computador){
+                tfNome.setText(((Computador) object).getNome());
+                tfPreco.setText(((Computador) object).getPreco().toString());
+                tfMemoriaRam.setText(((Computador) object).getMemoriaRam().toString());
+                tfProcessador.setText(((Computador) object).getProcessador());
+            }
         }
-        
-        for(int i = 0; i < ControleSistema.produtos.size(); i++){
-            System.out.println(ControleSistema.produtos.get(i));
+    }
+    
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        if(!Utilizades.produtoJaExiste(tfNome.getText(), ControleSistema.produtos)){
+            try{
+                Computador computador = new Computador();
+
+                computador.setNome(tfNome.getText());
+                computador.setPreco(Double.parseDouble(tfPreco.getText()));
+                computador.setMemoriaRam(Double.parseDouble(tfMemoriaRam.getText()));
+                computador.setProcessador(tfProcessador.getText());
+
+                ControleSistema.produtos.add(computador);
+
+                JOptionPane.showMessageDialog(null, "Computador " + computador.getNome() + " salvo com sucesso!");
+
+                tfNome.setText("");
+                tfPreco.setText("");
+                tfMemoriaRam.setText("");
+                tfProcessador.setText("");
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Erro ao salvar! Motivo: " + e.getMessage());
+            }
+
+            for(int i = 0; i < ControleSistema.produtos.size(); i++){
+                System.out.println(ControleSistema.produtos.get(i));
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "O produto " + tfNome.getText() + " já está cadastrado!");
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
