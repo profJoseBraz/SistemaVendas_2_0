@@ -27,7 +27,7 @@ public class Listagem extends javax.swing.JFrame {
         listarTodos();
     }
 
-    public void listarTodos(){
+    public static void listarTodos(){
         DefaultTableModel defaultTableModel = new DefaultTableModel();
         
         defaultTableModel.addColumn("Informações");
@@ -50,7 +50,7 @@ public class Listagem extends javax.swing.JFrame {
         }
     }
     
-    public void listarComputador(){
+    public static void listarComputador(){
         if(!ControleSistema.produtos.isEmpty()){
             DefaultTableModel defaultTableModel = new DefaultTableModel();
             
@@ -79,7 +79,7 @@ public class Listagem extends javax.swing.JFrame {
         }
     }
    
-    public void listarVideoGame(){
+    public static void listarVideoGame(){
         if(!ControleSistema.produtos.isEmpty()){
             DefaultTableModel defaultTableModel = new DefaultTableModel();
 
@@ -203,14 +203,18 @@ public class Listagem extends javax.swing.JFrame {
             if(object instanceof Computador){
                 if(((Computador) object).getNome().equals(nome)){
                     ArmazenadorDadosTemporarios.tempObject = object;
+                    ArmazenadorDadosTemporarios.indice = ControleSistema.produtos.indexOf(object);
                     CadastroComputador cadastroComputador = new CadastroComputador();
+                    cadastroComputador.setTitle("Alteração de computador");
                     cadastroComputador.setVisible(true);
                     break;
                 }
             }else if(object instanceof VideoGame){
                 if(((VideoGame) object).getNome().equals(nome)){
                     ArmazenadorDadosTemporarios.tempObject = object;
+                    ArmazenadorDadosTemporarios.indice = ControleSistema.produtos.indexOf(object);
                     CadastroVideoGame cadastroVideoGame = new CadastroVideoGame();
+                    cadastroVideoGame.setTitle("Alteração de video game");
                     cadastroVideoGame.setVisible(true);
                     break;
                 }
@@ -256,6 +260,6 @@ public class Listagem extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbCategoria;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableListagem;
+    private static javax.swing.JTable tableListagem;
     // End of variables declaration//GEN-END:variables
 }

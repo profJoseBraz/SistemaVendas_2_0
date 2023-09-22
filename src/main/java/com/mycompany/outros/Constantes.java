@@ -22,4 +22,7 @@ public class Constantes {
     
     public static final String ERRO_PRODUTO_NAO_CADASTRADO = 
         "Ainda não existem produtos cadastrados!";
+    
+    public static final String BTN_NOME_SALVAR = "Salvar";
+    public static final String BTN_NOME_ALTERAR = "Alterar";
 }

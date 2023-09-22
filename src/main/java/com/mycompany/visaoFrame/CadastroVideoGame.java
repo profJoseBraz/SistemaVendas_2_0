@@ -8,6 +8,7 @@ import com.mycompany.controle.ControleSistema;
 import com.mycompany.modelo.Computador;
 import com.mycompany.modelo.VideoGame;
 import com.mycompany.outros.ArmazenadorDadosTemporarios;
+import com.mycompany.outros.Constantes;
 import com.mycompany.outros.Utilizades;
 import javax.swing.JOptionPane;
 
@@ -24,6 +25,7 @@ public class CadastroVideoGame extends javax.swing.JFrame {
         initComponents();
         
         verificarDadosTemporarios(ArmazenadorDadosTemporarios.tempObject);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -41,7 +43,7 @@ public class CadastroVideoGame extends javax.swing.JFrame {
         tfPreco = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         tfPlataforma = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -53,10 +55,10 @@ public class CadastroVideoGame extends javax.swing.JFrame {
 
         jLabel3.setText("Plataforma");
 
-        jButton1.setText("Salvar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
 
@@ -79,7 +81,7 @@ public class CadastroVideoGame extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
                         .addComponent(jButton2)))
                 .addContainerGap())
@@ -101,7 +103,7 @@ public class CadastroVideoGame extends javax.swing.JFrame {
                 .addComponent(tfPlataforma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnSalvar)
                     .addComponent(jButton2))
                 .addContainerGap())
         );
@@ -115,37 +117,56 @@ public class CadastroVideoGame extends javax.swing.JFrame {
                 tfNome.setText(((VideoGame) object).getNome());
                 tfPreco.setText(((VideoGame) object).getPreco().toString());
                 tfPlataforma.setText(((VideoGame) object).getPlataforma());
+                setTitle("Alteração de video game");
+                btnSalvar.setText(Constantes.BTN_NOME_ALTERAR);
             }
+        }else{
+            setTitle("Cadastro de video game");
         }
     }
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(!Utilizades.produtoJaExiste(tfNome.getText(), ControleSistema.produtos)){
-            try{
-                VideoGame videoGame = new VideoGame();
-
-                videoGame.setNome(tfNome.getText());
-                videoGame.setPreco(Double.parseDouble(tfPreco.getText()));
-                videoGame.setPlataforma(tfPlataforma.getText());
-
-                ControleSistema.produtos.add(videoGame);
-
-                JOptionPane.showMessageDialog(null, "Video game " + videoGame.getNome() + " salvo com sucesso!");
-
-                tfNome.setText("");
-                tfPreco.setText("");
-                tfPlataforma.setText("");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Erro ao salvar! Motivo: " + e.getMessage());
-            }
-
-            for(int i = 0; i < ControleSistema.produtos.size(); i++){
-                System.out.println(ControleSistema.produtos.get(i));
-            }
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        if(btnSalvar.getText().equals(Constantes.BTN_NOME_ALTERAR)){
+            VideoGame videoGame = new VideoGame();
+            
+            videoGame = (VideoGame) ArmazenadorDadosTemporarios.tempObject;
+            videoGame.setNome(tfNome.getText());
+            videoGame.setPreco(Double.parseDouble(tfPreco.getText()));
+            videoGame.setPlataforma(tfPlataforma.getText());
+            
+            ControleSistema.produtos.set(ArmazenadorDadosTemporarios.indice, videoGame);
+            
+            JOptionPane.showMessageDialog(null, "Produto alterado com sucesso!");
+        
+            Listagem.listarVideoGame();
         }else{
-            JOptionPane.showMessageDialog(null, "O produto " + tfNome.getText() + " já está cadastrado!");
+            if(!Utilizades.produtoJaExiste(tfNome.getText(), ControleSistema.produtos)){
+                try{
+                    VideoGame videoGame = new VideoGame();
+
+                    videoGame.setNome(tfNome.getText());
+                    videoGame.setPreco(Double.parseDouble(tfPreco.getText()));
+                    videoGame.setPlataforma(tfPlataforma.getText());
+
+                    ControleSistema.produtos.add(videoGame);
+
+                    JOptionPane.showMessageDialog(null, "Video game " + videoGame.getNome() + " salvo com sucesso!");
+
+                    tfNome.setText("");
+                    tfPreco.setText("");
+                    tfPlataforma.setText("");
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Erro ao salvar! Motivo: " + e.getMessage());
+                }
+
+                for(int i = 0; i < ControleSistema.produtos.size(); i++){
+                    System.out.println(ControleSistema.produtos.get(i));
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "O produto " + tfNome.getText() + " já está cadastrado!");
+            }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,7 +204,7 @@ public class CadastroVideoGame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

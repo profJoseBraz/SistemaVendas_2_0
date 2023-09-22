@@ -12,4 +12,5 @@ import java.util.Dictionary;
  */
 public class ArmazenadorDadosTemporarios {
     public static Object tempObject;
+    public static int indice;
 }
