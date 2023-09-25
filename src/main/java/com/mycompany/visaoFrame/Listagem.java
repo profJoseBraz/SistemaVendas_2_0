@@ -27,6 +27,10 @@ public class Listagem extends javax.swing.JFrame {
         listarTodos();
     }
 
+    public static void redefineCbCategorias(){
+        cbCategoria.setSelectedIndex(0);
+    }
+    
     public static void listarTodos(){
         DefaultTableModel defaultTableModel = new DefaultTableModel();
         
@@ -258,7 +262,7 @@ public class Listagem extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbCategoria;
+    private static javax.swing.JComboBox<String> cbCategoria;
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTable tableListagem;
     // End of variables declaration//GEN-END:variables

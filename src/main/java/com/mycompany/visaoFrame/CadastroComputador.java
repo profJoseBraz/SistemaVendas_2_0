@@ -164,7 +164,8 @@ public class CadastroComputador extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "Produto alterado com sucesso!");
         
-            Listagem.listarComputador();
+            Listagem.redefineCbCategorias();
+            Listagem.listarTodos();
             
             ArmazenadorDadosTemporarios.tempObject = null;
         }else{

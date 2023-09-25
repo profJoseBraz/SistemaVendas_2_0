@@ -45,7 +45,7 @@ public class CadastroVideoGame extends javax.swing.JFrame {
         tfPlataforma = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de video game");
@@ -65,10 +65,10 @@ public class CadastroVideoGame extends javax.swing.JFrame {
 
         jButton2.setText("Cancelar");
 
-        jButton1.setText("Excluir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -91,7 +91,7 @@ public class CadastroVideoGame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
                         .addComponent(jButton2)))
                 .addContainerGap())
@@ -115,7 +115,7 @@ public class CadastroVideoGame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(btnExcluir))
                 .addContainerGap())
         );
 
@@ -130,9 +130,11 @@ public class CadastroVideoGame extends javax.swing.JFrame {
                 tfPlataforma.setText(((VideoGame) object).getPlataforma());
                 setTitle("Alteração de video game");
                 btnSalvar.setText(Constantes.BTN_NOME_ALTERAR);
+                btnExcluir.setVisible(true);
             }
         }else{
             setTitle("Cadastro de video game");
+            btnExcluir.setVisible(false);
         }
     }
     
@@ -148,8 +150,9 @@ public class CadastroVideoGame extends javax.swing.JFrame {
             ControleSistema.produtos.set(ArmazenadorDadosTemporarios.indice, videoGame);
             
             JOptionPane.showMessageDialog(null, "Produto alterado com sucesso!");
-        
-            Listagem.listarVideoGame();
+            
+            Listagem.redefineCbCategorias();
+            Listagem.listarTodos();
             
             ArmazenadorDadosTemporarios.tempObject = null;
         }else{
@@ -181,7 +184,7 @@ public class CadastroVideoGame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try{
             ControleSistema.produtos.remove(ArmazenadorDadosTemporarios.tempObject);
             JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
@@ -191,7 +194,7 @@ public class CadastroVideoGame extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Erro ao excluir!");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,8 +232,8 @@ public class CadastroVideoGame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
